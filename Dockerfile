@@ -6,7 +6,7 @@ FROM resin/rpi-raspbian:latest
 MAINTAINER Bruno Cardoso Cantisano <bruno.cantisano@gmail.com>
 
 ENV LIBSODIUM_VERSION=1.0.12
-ENV DNSCRYPT-PROXY_VERSION=1.4.3
+ENV DNSCRYPT-PROXY_VERSION=1.9.5
 
 RUN apt-get update
 RUN apt-get install -y build-essential pdnsd haproxy polipo nginx python
