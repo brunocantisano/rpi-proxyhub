@@ -6,7 +6,7 @@ FROM resin/rpi-raspbian:latest
 MAINTAINER Bruno Cardoso Cantisano <bruno.cantisano@gmail.com>
 
 ENV LIBSODIUM_VERSION=1.0.12
-ENV DNSCRYPT-PROXY_VERSION=1.9.5
+ENV DNSCRYPT_PROXY_VERSION=1.9.5
 
 RUN apt-get update
 RUN apt-get install -y build-essential pdnsd haproxy polipo nginx python
@@ -22,7 +22,7 @@ ADD files/services.ini /etc/supervisor/conf.d/
 ADD http://stedolan.github.io/jq/download/linux64/jq /usr/local/bin/
 ADD https://bootstrap.pypa.io/get-pip.py /tmp/pkgs/
 ADD https://download.libsodium.org/libsodium/releases/libsodium-${LIBSODIUM_VERSION}.tar.gz /tmp/pkgs/
-ADD http://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-${DNSCRYPT-PROXY_VERSION}.tar.gz /tmp/pkgs/
+ADD https://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-${DNSCRYPT_PROXY_VERSION}.tar.gz /tmp/pkgs/
 
 WORKDIR /tmp/pkgs/
 RUN chmod +x /usr/local/bin/jq
@@ -34,8 +34,8 @@ RUN tar xzf libsodium-${LIBSODIUM_VERSION}.tar.gz && \
     make && \
     make install
 RUN echo /usr/local/lib > /etc/ld.so.conf.d/local.conf && ldconfig
-RUN tar xzf dnscrypt-proxy-${DNSCRYPT-PROXY_VERSION}.tar.gz && \
-    cd dnscrypt-proxy-${DNSCRYPT-PROXY_VERSION} && \
+RUN tar xzf dnscrypt-proxy-${DNSCRYPT_PROXY_VERSION}.tar.gz && \
+    cd dnscrypt-proxy-${DNSCRYPT_PROXY_VERSION} && \
     ./configure && \
     make && \
     make install
